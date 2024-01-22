@@ -77,7 +77,7 @@ lazy val core = project
     publishConfiguration      := publishConfiguration.value.withOverwrite(true),
     publishLocalConfiguration := publishLocalConfiguration.value.withOverwrite(true),
     resolvers += "Local Maven Repository" at "file://" + Path.userHome.absolutePath + "/.m2/repository",
-    resolvers += Resolver.githubPackages("OWNER"),
+    // resolvers += Resolver.githubPackages("OWNER"),
     libraryDependencies ++= Seq(
       "org.typelevel"  %% "cats-core"           % catsVersion,
       "co.fs2"         %% "fs2-core"            % fs2Version,
