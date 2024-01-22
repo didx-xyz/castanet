@@ -28,7 +28,7 @@ ThisBuild / scmInfo := Some(
     "scm:git@github.iandebeer/castanet.git"
   )
 )
-  
+
 ThisBuild / developers := List(
   Developer(
     id = "iandebeer",
@@ -56,7 +56,7 @@ ThisBuild / pomIncludeRepository := { _ => false }
 /*ThisBuild /  githubOwner := "iandebeer"
 ThisBuild /githubRepository := "castanet"
 ThisBuild / githubTokenSource := TokenSource.GitConfig("github.token") || TokenSource.Environment("GITHUB_TOKEN")
-*/
+ */
 ThisBuild / publishMavenStyle := true
 
 ThisBuild / versionScheme := Some("early-semver")
@@ -77,7 +77,7 @@ lazy val core = project
     publishConfiguration      := publishConfiguration.value.withOverwrite(true),
     publishLocalConfiguration := publishLocalConfiguration.value.withOverwrite(true),
     resolvers += "Local Maven Repository" at "file://" + Path.userHome.absolutePath + "/.m2/repository",
-    resolvers += Resolver.githubPackages("OWNER"),
+    // resolvers += Resolver.githubPackages("OWNER"),
     libraryDependencies ++= Seq(
       "org.typelevel"  %% "cats-core"           % catsVersion,
       "co.fs2"         %% "fs2-core"            % fs2Version,
@@ -86,13 +86,13 @@ lazy val core = project
       "dev.optics"     %% "monocle-core"        % monocleVersion,
       "org.scodec"     %% "scodec-bits"         % scodecVersion,
       "org.scala-lang" %% "scala3-staging"      % Scala3,
-      "io.circe" %% "circe-yaml"                % "0.14.2",
+      "io.circe"       %% "circe-yaml"          % "0.14.2",
       "org.scalameta"  %% "munit"               % munitVersion   % Test,
       "org.scalameta"  %% "munit-scalacheck"    % munitVersion   % Test,
       "org.typelevel"  %% "munit-cats-effect-3" % munitCEVersion % Test
     ),
     libraryDependencies ++= Seq(
-     // "io.circe" %% "circe-yaml",
+      // "io.circe" %% "circe-yaml",
       "io.circe" %% "circe-core",
       "io.circe" %% "circe-generic",
       "io.circe" %% "circe-parser"
