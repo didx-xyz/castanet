@@ -1,16 +1,16 @@
-val Scala3   = "3.3.0"
+val Scala3   = "3.3.1"
 val Scala213 = "2.13.8"
 
-val catsVersion          = "2.9.0"
+val catsVersion          = "2.10.0"
 val ceVersion            = "3.5.3"
-val fs2Version           = "3.7.0"
-val munitVersion         = "1.0.0-M8"
+val fs2Version           = "3.9.4"
+val munitVersion         = "1.0.0-M10"
 val munitCEVersion       = "1.0.7"
 val munitCheckEffVersion = "1.0.0-M7"
 val googleProtoVersion   = "3.19.1"
-val circeVersion         = "0.14.5"
+val circeVersion         = "0.14.6"
 val monocleVersion       = "3.2.0"
-val scodecVersion        = "1.1.37"
+val scodecVersion        = "1.1.38"
 val junitVersion         = "0.11"
 val refinedVersion       = "0.9.27"
 
@@ -86,7 +86,7 @@ lazy val core = project
       "dev.optics"     %% "monocle-core"        % monocleVersion,
       "org.scodec"     %% "scodec-bits"         % scodecVersion,
       "org.scala-lang" %% "scala3-staging"      % Scala3,
-      "io.circe"       %% "circe-yaml"          % "0.14.2",
+      "io.circe"       %% "circe-yaml"          % "0.15.1",
       "org.scalameta"  %% "munit"               % munitVersion   % Test,
       "org.scalameta"  %% "munit-scalacheck"    % munitVersion   % Test,
       "org.typelevel"  %% "munit-cats-effect-3" % munitCEVersion % Test
