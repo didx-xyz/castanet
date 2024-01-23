@@ -86,7 +86,7 @@ lazy val core = project
       "dev.optics"     %% "monocle-core"        % monocleVersion,
       "org.scodec"     %% "scodec-bits"         % scodecVersion,
       "org.scala-lang" %% "scala3-staging"      % Scala3,
-      "io.circe"       %% "circe-yaml"          % "0.14.2",
+      "io.circe"       %% "circe-yaml"          % "0.15.1",
       "org.scalameta"  %% "munit"               % munitVersion   % Test,
       "org.scalameta"  %% "munit-scalacheck"    % munitVersion   % Test,
       "org.typelevel"  %% "munit-cats-effect-3" % munitCEVersion % Test
