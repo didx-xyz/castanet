@@ -10,7 +10,7 @@ val munitCheckEffVersion = "1.0.0-M7"
 val googleProtoVersion   = "3.19.1"
 val circeVersion         = "0.14.6"
 val monocleVersion       = "3.2.0"
-val scodecVersion        = "1.1.37"
+val scodecVersion        = "1.1.38"
 val junitVersion         = "0.11"
 val refinedVersion       = "0.9.27"
 
