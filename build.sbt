@@ -2,7 +2,7 @@ val Scala3   = "3.3.1"
 val Scala213 = "2.13.8"
 
 val catsVersion          = "2.10.0"
-val ceVersion            = "3.5.0"
+val ceVersion            = "3.5.3"
 val fs2Version           = "3.9.4"
 val munitVersion         = "1.0.0-M10"
 val munitCEVersion       = "1.0.7"
