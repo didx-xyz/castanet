@@ -31,6 +31,8 @@ jobs:
 
       - name: Run SBT test
         run: sbt test
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
 
   publish:
     name: Publish
