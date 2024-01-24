@@ -64,11 +64,11 @@ class PetriSpec extends FunSuite {
 
     val m1 = Markers(pn)
     println(s"\nm1 = \n${m1}\n${m1.toStateVector} => ${m1.serialize}")
-   
+
     println("_" * 10)
 
     val m2 = m1.setMarker(Marker(start.id, bin"1"))
-   
+
     println(s"\nm2 = \n${m2}\n${m2.toStateVector} => ${m2.serialize}")
     println("_" * 10)
 
@@ -80,11 +80,10 @@ class PetriSpec extends FunSuite {
     val m4 = Markers(pn, m3.toStateVector)
     println(s"\nm4 = \n${m4}\n${m4.toStateVector} => ${m4.serialize}")
 
-  
     println("_" * 10)
 
     val m5 = Markers(pn, m4.serialize)
-  
+
     println(s"\nm5 = \n${m5}\n${m5.toStateVector} => ${m5.serialize}")
     println("_" * 10)
 
@@ -95,13 +94,13 @@ class PetriSpec extends FunSuite {
         p2 <- pn.step
         p3 <- pn.step
       yield (
-        println("p0 = " + pn.peek(Step(m2,1))),
+        println("p0 = " + pn.peek(Step(m2, 1))),
         PetriPrinter(fileName = "petrinet2", petriNet = pn).print(Option(p1)),
-        println("p1 = " + pn.peek(Step(p1,2))),
+        println("p1 = " + pn.peek(Step(p1, 2))),
         PetriPrinter(fileName = "petrinet3", petriNet = pn).print(Option(p2)),
-        println("p2 = " + pn.peek(Step(p2,3))),
+        println("p2 = " + pn.peek(Step(p2, 3))),
         PetriPrinter(fileName = "petrinet4", petriNet = pn).print(Option(p3)),
-        println("p3 = " + pn.peek(Step(p3,4)))
+        println("p3 = " + pn.peek(Step(p3, 4)))
       )
     steps.run(Step(m3, 1)).value
 

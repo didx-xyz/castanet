@@ -21,7 +21,6 @@ import monocle.Lens
 import monocle.syntax.all.*
 import java.time.Clock
 
-
 case class Workflow(apiVersion: String, kind: String, metadata: Metadata, spec: Spec)
 case class Spec(entrypoint: String, templates: List[Template])
 enum Template:
@@ -43,7 +42,7 @@ case class Container(image: String, command: List[String])
 object PetriGen extends IOApp.Simple:
   def fromYaml(s: String) =
     for json <- yaml.parser.parse(s)
-    //x <- json.asObject
+    // x <- json.asObject
     yield json
 
   val converter: Stream[IO, Unit] =
@@ -55,9 +54,9 @@ object PetriGen extends IOApp.Simple:
         case Right(json)        => json
         case Left(e: Throwable) => Json.Null.toString
       })
-      //.map(j => extractDag(j))
-      //.through(stringArrayParser)
-      //.through(decoder[IO,Workflow])
+      // .map(j => extractDag(j))
+      // .through(stringArrayParser)
+      // .through(decoder[IO,Workflow])
       .map(w => w.toString)
       .through(text.utf8.encode)
       .through(
