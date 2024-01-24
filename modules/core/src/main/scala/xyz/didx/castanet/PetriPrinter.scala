@@ -1,4 +1,4 @@
-package dev.mn8.castanet
+package xyz.didx.castanet
 
 import java.io.PrintWriter
 import java.io.File

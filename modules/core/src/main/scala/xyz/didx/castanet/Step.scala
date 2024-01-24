@@ -1,4 +1,4 @@
-package dev.mn8.castanet
+package xyz.didx.castanet
 
 import scala.collection.immutable.SortedMap
 import scodec.bits.BitVector

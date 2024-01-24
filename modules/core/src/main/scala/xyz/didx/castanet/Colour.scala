@@ -1,4 +1,4 @@
-package dev.mn8.castanet
+package xyz.didx.castanet
 
 enum Colour(rgb: Int) {
   case BLACK extends Colour(0x000000)

@@ -18,23 +18,16 @@ Global / onChangedBuildSource := ReloadOnSourceChanges
 ThisBuild / scalaVersion      := Scala3
 ThisBuild / version           := "0.1.10"
 
-ThisBuild / organization         := "dev.mn8"
-ThisBuild / organizationName     := "MN8 Technology ÖU"
-ThisBuild / organizationHomepage := Some(url("https://mn8.dev"))
-
-ThisBuild / scmInfo := Some(
-  ScmInfo(
-    url("https://github.com/iandebeer/castanet"),
-    "scm:git@github.iandebeer/castanet.git"
-  )
-)
+ThisBuild / organization         := "xyz.didx"
+ThisBuild / organizationName     := "DIDx"
+ThisBuild / organizationHomepage := Some(url("https://didx.co.za/"))
 
 ThisBuild / developers := List(
   Developer(
     id = "iandebeer",
     name = "Ian de Beer",
-    email = "ian@mn8.ee",
-    url = url("https://mn8.dev")
+    email = "ian.debeer@didx.co.za ",
+    url = url("https://didx.co.za/")
   )
 )
 
@@ -42,7 +35,7 @@ ThisBuild / description := "Coloured Petri for Scala3"
 ThisBuild / licenses := List(
   "MIT License" -> new URI("https://tldrlegal.com/license/mit-license#summary").toURL
 )
-ThisBuild / homepage := Some(url("https://github.com/iandebeer/castanet"))
+ThisBuild / homepage := Some(url("https://github.com/didx-xyz/castanet"))
 
 // Remove all additional repository other than Maven Central from POM
 ThisBuild / pomIncludeRepository := { _ => false }
@@ -53,7 +46,7 @@ ThisBuild / pomIncludeRepository := { _ => false }
   else Some("releases" at nexus + "service/local/staging/deploy/maven2")
 }*/
 
-/*ThisBuild /  githubOwner := "iandebeer"
+/*ThisBuild /  githubOwner := "didx-xyz"
 ThisBuild /githubRepository := "castanet"
 ThisBuild / githubTokenSource := TokenSource.GitConfig("github.token") || TokenSource.Environment("GITHUB_TOKEN")
  */

@@ -5,7 +5,7 @@ Test
 It works like this
 
 ```scala mdoc
-import dev.mn8._
+import xyz.didx._
 1+1
 val a = s"${Main.msg} :)"
 
