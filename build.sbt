@@ -40,7 +40,7 @@ ThisBuild / developers := List(
 
 ThisBuild / description := "Coloured Petri for Scala3"
 ThisBuild / licenses := List(
-  "MIT License" -> new URL("https://tldrlegal.com/license/mit-license#summary")
+  "MIT License" -> new URI("https://tldrlegal.com/license/mit-license#summary").toURL
 )
 ThisBuild / homepage := Some(url("https://github.com/iandebeer/castanet"))
 

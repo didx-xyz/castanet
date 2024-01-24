@@ -24,3 +24,5 @@ build/
 *.iws
 .idea
 meta.json
+project/metals.sbt
+project/project/*
