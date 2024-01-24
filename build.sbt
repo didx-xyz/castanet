@@ -40,19 +40,20 @@ ThisBuild / homepage := Some(url("https://github.com/didx-xyz/castanet"))
 // Remove all additional repository other than Maven Central from POM
 ThisBuild / pomIncludeRepository := { _ => false }
 
-/*ThisBuild / publishTo := {
-  val nexus = "https://s01.oss.sonatype.org/"
-  if (isSnapshot.value) Some("snapshots" at nexus + "content/repositories/snapshots")
-  else Some("releases" at nexus + "service/local/staging/deploy/maven2")
-}*/
-
-/*ThisBuild /  githubOwner := "didx-xyz"
-ThisBuild /githubRepository := "castanet"
-ThisBuild / githubTokenSource := TokenSource.GitConfig("github.token") || TokenSource.Environment("GITHUB_TOKEN")
- */
+// Publishing configuration
+ThisBuild / publishTo := Some {
+  if (isSnapshot.value)
+    "GitHub Package Registry Snapshots" at "https://maven.pkg.github.com/didx-xyz/castanet"
+  else
+    "GitHub Package Registry Releases" at "https://maven.pkg.github.com/didx-xyz/castanet"
+}
 ThisBuild / publishMavenStyle := true
-
-ThisBuild / versionScheme := Some("early-semver")
+ThisBuild / versionScheme     := Some("early-semver")
+ThisBuild / githubOwner       := "didx-xyz"
+ThisBuild / githubRepository  := "castanet"
+ThisBuild / githubTokenSource := TokenSource.GitConfig("github.token") || TokenSource.Environment(
+  "GITHUB_TOKEN"
+)
 
 lazy val root = project
   .in(file("."))
