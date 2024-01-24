@@ -13,6 +13,8 @@ jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
       - uses: actions/checkout@v3
@@ -31,8 +33,6 @@ jobs:
 
       - name: Run SBT test
         run: sbt test
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
 
   publish:
     name: Publish
