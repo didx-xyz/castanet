@@ -2,7 +2,7 @@ resolvers += Resolver.mavenLocal
 
 //addSbtPlugin("ch.epfl.lamp" % "sbt-dotty" % "0.5.5")
 
-addSbtPlugin("org.scalameta" % "sbt-mdoc" % "2.3.8")
+addSbtPlugin("org.scalameta" % "sbt-mdoc" % "2.5.2")
 
 addSbtPlugin("org.scalameta" % "sbt-native-image" % "0.3.4")
 
