@@ -7,7 +7,7 @@ import cats.implicits.*
 import cats.instances.all.*
 import cats.syntax.all.*
 
-case class Marker(id: NodeId, bits: BitVector) extends Monoid[Marker] :
+case class Marker(id: NodeId, bits: BitVector) extends Monoid[Marker]:
   val asMap = Map(id -> bits)
 
   override def empty: Marker = Marker(id, BitVector.empty)
