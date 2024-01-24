@@ -3,7 +3,7 @@
 ## SBT configuration
 
 ```sbt
-libraryDependencies += "dev.mn8" %% "castanet" % "0.1.9"
+libraryDependencies += "xyz.didx" %% "castanet" % "0.1.9"
 ```
 
 ## Getting Started
@@ -29,7 +29,7 @@ Castanet constructs a PetriNet using a builder-pattern
     val joint: Place = Place("joint", 3)
     val end: Place   = Place("end", 1)
     val s1 = Service(
-      "dev.mn8.castanet",
+      "xyz.didx.castanet",
       "HelloFs2Grpc",
       List[RPC](RPC(name = "sayHello", input = "", output = ""))
     )

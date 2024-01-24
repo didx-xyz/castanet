@@ -1,4 +1,4 @@
-package dev.mn8.castanet
+package xyz.didx.castanet
 
 import scodec.bits.{Bases, BitVector, ByteOrdering}
 

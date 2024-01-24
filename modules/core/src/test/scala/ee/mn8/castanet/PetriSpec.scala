@@ -1,4 +1,4 @@
-package dev.mn8.castanet
+package xyz.didx.castanet
 import cats.data.State
 import cats.syntax.functor.*
 import io.circe.Decoder
@@ -28,7 +28,7 @@ class PetriSpec extends FunSuite {
     val joint: Place = Place("joint", 3)
     val end: Place   = Place("end", 1)
     val s = Service(
-      "dev.mn8.castanet",
+      "xyz.didx.castanet",
       "HelloFs2Grpc",
       List[RPC](RPC(name = "sayHello", input = "", output = ""))
     )
