@@ -2,12 +2,19 @@ name: Continuous Integration
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - master
   pull_request:
+    branches:
+      - master
 
 jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
       - uses: actions/checkout@v3
@@ -26,10 +33,6 @@ jobs:
 
       - name: Run SBT test
         run: sbt test
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-          GITHUB_OWNER: ${{ github.repository_owner }}
-          GITHUB_REPO: ${{ github.event.repository.name }}
 
   publish:
     name: Publish
