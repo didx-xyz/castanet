@@ -39,7 +39,7 @@ import scala.concurrent.duration.*
 import scala.collection.immutable
 
 trait ColouredPetriNet:
-  //import LinkableElement._
+  // import LinkableElement._
 
   import cats.data.State
 
@@ -47,19 +47,20 @@ trait ColouredPetriNet:
   val graph: PetriGraph
   val arcs: Map[ArcId, Long]
 
-  /**
-   * Providing a state monad for traversing the Petri Net
-   * @param step the current state of the Petri Net
-   * @return the new state of the Petri Net
-   */
+  /** Providing a state monad for traversing the Petri Net
+    * @param step
+    *   the current state of the Petri Net
+    * @return
+    *   the new state of the Petri Net
+    */
   def step: State[Step, Markers] = State(step =>
     // all arcs that come from places with tokens
     val flows: Map[ArcId, Long] = arcs.filter(a => step.inits.keySet.contains(a._1.from))
 
-    // all arcs that have a smaller guards than the number of markers in the place - i.e. it can step 
+    // all arcs that have a smaller guards than the number of markers in the place - i.e. it can step
     val steps: Map[ArcId, Long] = flows.filter(f => f._2 <= step.inits(f._1.from).populationCount)
-     
-    // all arcs from allowable transitions (steps) and their weights 
+
+    // all arcs from allowable transitions (steps) and their weights
     val nextFlows: Map[ArcId, Long] = for
       s <- steps
       n <- graph(s._1.to)
@@ -72,28 +73,45 @@ trait ColouredPetriNet:
         .capacity - step.markers.state(f._1.to).populationCount
     )
 
-    // remove markers from the origin place of allowed steps 
-    val m1 = steps.foldLeft(step.markers)((m, s) => m.setMarker(Marker(s._1.from, step.markers.state(s._1.from).shiftLeft(s._2))))
+    // remove markers from the origin place of allowed steps
+    val m1 = steps
+      .foldLeft(step.markers)((m, s) =>
+        m.setMarker(
+          Marker(s._1.from, step.markers.state(s._1.from).shiftLeft(s._2))
+        )
+      )
 
     // add markers to the destination place (as per the weight from the transition)
-    val m2 = nextFlows.foldLeft(m1)((m, s) => m.setMarker(Marker(s._1.to, step.markers.state(s._1.to).patch(step.markers.state(s._1.to).populationCount, BitVector.fill(s._2)(true)))))
+    val m2 = nextFlows
+      .foldLeft(m1)((m, s) =>
+        m.setMarker(
+          Marker(
+            s._1.to,
+            step.markers
+              .state(s._1.to)
+              .patch(step.markers.state(s._1.to).populationCount, BitVector.fill(s._2)(true))
+          )
+        )
+      )
 
-    // this side effect must be moved to the IO monad 
+    // this side effect must be moved to the IO monad
     /*if step.show then
       PetriPrinter(fileName = s"step${step.count}", petriNet = this).print(markers = Option(step.markers), steps = Option(steps ++ nextSteps))
     else ()
-    */
-      // update the state and return the markers resulting from the step (reduced origin and increased destination steps)
-      (Step(m2, step.count + 1), m2)
+     */
+    // update the state and return the markers resulting from the step (reduced origin and increased destination steps)
+    (Step(m2, step.count + 1), m2)
   )
 
-  /**
-   * Shows the next places and transitions that can be reached from the current state without changing the state
-   * @param step
-  * @return a tuple of the current places and next transitions that can be reached from the current state given a set of Markers
-   */
+  /** Shows the next places and transitions that can be reached from the current state without
+    * changing the state
+    * @param step
+    * @return
+    *   a tuple of the current places and next transitions that can be reached from the current
+    *   state given a set of Markers
+    */
 
-  def peek(step: Step): (Set[LinkableElement], Set[LinkableElement])= 
+  def peek(step: Step): (Set[LinkableElement], Set[LinkableElement]) =
     val flows: Map[ArcId, Long] = arcs.filter(a => step.inits.keySet.contains(a._1.from))
     val steps: Map[ArcId, Long] = flows.filter(f => f._2 <= step.inits(f._1.from).populationCount)
     val nextFlows: Map[ArcId, Long] = for
@@ -102,25 +120,28 @@ trait ColouredPetriNet:
     yield (ArcId(s._1.to, n.id), arcs(ArcId(s._1.to, n.id)))
 
     // all arcs that have a weight that is less than the capacity allowed by the destination place
-    val currentPlaces = nextFlows.filter(f =>
-      f._2 <= elements(f._1.to)
-        .asInstanceOf[Place]
-        .capacity - step.markers.state(f._1.to).populationCount
-    ).map(f =>
-      elements.get(f._1.from) /* match
+    val currentPlaces = nextFlows
+      .filter(f =>
+        f._2 <= elements(f._1.to)
+          .asInstanceOf[Place]
+          .capacity - step.markers.state(f._1.to).populationCount
+      )
+      .map(f => elements.get(f._1.from) /* match
         case Some(p: Place) => p.name
         case _ => "" */
-    ).flatten
-    val nextTransitions = nextFlows.filter(f =>
-      f._2 <= elements(f._1.to)
-        .asInstanceOf[Place]
-        .capacity - step.markers.state(f._1.to).populationCount
-    ).map(f =>
-      elements.get(f._1.to)/*  match
+      )
+      .flatten
+    val nextTransitions = nextFlows
+      .filter(f =>
+        f._2 <= elements(f._1.to)
+          .asInstanceOf[Place]
+          .capacity - step.markers.state(f._1.to).populationCount
+      )
+      .map(f => elements.get(f._1.to) /*  match
         case Some(t: Transition) => t.name
         case _ => "" */
-    ).flatten
+      )
+      .flatten
     (currentPlaces.toSet, nextTransitions.toSet)
 
 end ColouredPetriNet
-
