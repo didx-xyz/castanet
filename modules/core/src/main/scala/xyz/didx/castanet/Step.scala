@@ -1,7 +1,8 @@
 package xyz.didx.castanet
 
-import scala.collection.immutable.SortedMap
 import scodec.bits.BitVector
+
+import scala.collection.immutable.SortedMap
 
 case class Step(markers: Markers, count: Int = 0):
   val inits: SortedMap[NodeId, BitVector] =

@@ -1,8 +1,11 @@
 package xyz.didx.castanet
 
-import scodec.bits.{Bases, BitVector, ByteOrdering}
+import scodec.bits.Bases
+import scodec.bits.BitVector
+import scodec.bits.ByteOrdering
 
-import scala.collection.immutable.{ListSet, SortedMap}
+import scala.collection.immutable.ListSet
+import scala.collection.immutable.SortedMap
 import scala.collection.mutable
 import scala.concurrent.duration.*
 

@@ -1,11 +1,13 @@
 package xyz.didx.castanet
 
-import scodec.bits.{Bases, BitVector, ByteOrdering}
 import cats.*
 import cats.effect.*
 import cats.implicits.*
 import cats.instances.all.*
 import cats.syntax.all.*
+import scodec.bits.Bases
+import scodec.bits.BitVector
+import scodec.bits.ByteOrdering
 
 case class Marker(id: NodeId, bits: BitVector) extends Monoid[Marker]:
   val asMap = Map(id -> bits)

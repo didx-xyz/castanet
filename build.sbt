@@ -58,6 +58,7 @@ lazy val root = project
   .in(file("."))
   .aggregate(core)
   .settings(
+    scalafixSettings,
     publish / skip            := true,
     publishConfiguration      := publishConfiguration.value.withOverwrite(true),
     publishLocalConfiguration := publishLocalConfiguration.value.withOverwrite(true)
@@ -66,6 +67,7 @@ lazy val root = project
 lazy val core = project
   .in(file("modules/core"))
   .settings(
+    scalafixSettings,
     name                      := "castanet",
     publishConfiguration      := publishConfiguration.value.withOverwrite(true),
     publishLocalConfiguration := publishLocalConfiguration.value.withOverwrite(true),
@@ -91,3 +93,5 @@ lazy val core = project
       "io.circe" %% "circe-parser"
     ).map(_ % circeVersion)
   )
+
+lazy val scalafixSettings = Seq(semanticdbEnabled := true)

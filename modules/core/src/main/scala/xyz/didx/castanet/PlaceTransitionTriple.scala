@@ -4,6 +4,7 @@ import cats.Semigroup
 
 import java.security.MessageDigest
 import scala.collection.immutable.ListSet
+
 import Arc._
 
 //trait ConcatenableProcess extends PetriElements

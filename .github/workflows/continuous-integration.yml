@@ -2,7 +2,6 @@ name: Continuous Integration
 
 on:
   workflow_dispatch:
-  push:
   pull_request:
 
 jobs:
@@ -18,7 +17,15 @@ jobs:
           distribution: temurin
           cache: sbt
       - run: sudo apt-get update && sudo apt-get install -y graphviz
-      - run: sbt test
+
+      - name: Check formatting with Scalafmt
+        run: sbt scalafmtCheckAll
+
+      - name: Check import organization with Scalafix
+        run: sbt "scalafix --check OrganizeImports"
+
+      - name: Run SBT test
+        run: sbt test
         env:
           GITHUB_TOKEN: ${{ github.token }}
           GITHUB_OWNER: ${{ github.repository_owner }}

@@ -1,17 +1,17 @@
 package xyz.didx.castanet
 
-import cats.{Monoid, Semigroup}
-
-import scala.collection.immutable.SortedMap
-import scala.collection.immutable.ListSet
+import cats.Monoid
+import cats.Semigroup
+import cats.effect.IO
 import cats.effect.*
 import cats.effect.std.Dispatcher
 import fs2.*
 
-import java.util.concurrent.Executor
-import scala.concurrent.ExecutionContext.Implicits.global
-import cats.effect.IO
 import java.security.MessageDigest
+import java.util.concurrent.Executor
+import scala.collection.immutable.ListSet
+import scala.collection.immutable.SortedMap
+import scala.concurrent.ExecutionContext.Implicits.global
 
 trait PetriElement:
   def id: NodeId
