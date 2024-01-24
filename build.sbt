@@ -37,9 +37,6 @@ ThisBuild / licenses := List(
 )
 ThisBuild / homepage := Some(url("https://github.com/didx-xyz/castanet"))
 
-// Remove all additional repository other than Maven Central from POM
-ThisBuild / pomIncludeRepository := { _ => false }
-
 // Publishing configuration
 ThisBuild / publishTo := Some {
   if (isSnapshot.value)
@@ -54,6 +51,9 @@ ThisBuild / githubRepository  := "castanet"
 ThisBuild / githubTokenSource := TokenSource.GitConfig("github.token") || TokenSource.Environment(
   "GITHUB_TOKEN"
 )
+
+// Remove all additional repository other than Maven Central from POM
+ThisBuild / pomIncludeRepository := { _ => false }
 
 lazy val root = project
   .in(file("."))
