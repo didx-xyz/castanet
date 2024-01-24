@@ -21,7 +21,6 @@ import cats.effect.*
 import cats.implicits.*
 import cats.instances.all.*
 import cats.syntax.all.*
-import xyz.didx.castanet.PetriElement
 import io.circe.*
 import io.circe.generic.auto.*
 import io.circe.parser.*
@@ -29,13 +28,17 @@ import io.circe.syntax.*
 import io.circe.yaml.*
 import monocle.Lens
 import monocle.syntax.all.*
-import scodec.bits.{Bases, BitVector, ByteOrdering}
+import scodec.bits.Bases
+import scodec.bits.BitVector
+import scodec.bits.ByteOrdering
+import xyz.didx.castanet.PetriElement
 
 import java.nio.file.Paths
-import scala.collection.immutable.{ListSet, SortedMap}
+import scala.collection.immutable
+import scala.collection.immutable.ListSet
+import scala.collection.immutable.SortedMap
 import scala.collection.mutable
 import scala.concurrent.duration.*
-import scala.collection.immutable
 
 trait ColouredPetriNet:
   // import LinkableElement._

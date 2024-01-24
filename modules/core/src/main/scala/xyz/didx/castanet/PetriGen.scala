@@ -1,7 +1,5 @@
 package xyz.didx.castanet
 
-import scala.concurrent.duration.*
-
 import cats.*
 import cats.effect.*
 import cats.implicits.*
@@ -19,7 +17,9 @@ import io.circe.syntax.*
 import io.circe.yaml.*
 import monocle.Lens
 import monocle.syntax.all.*
+
 import java.time.Clock
+import scala.concurrent.duration.*
 
 case class Workflow(apiVersion: String, kind: String, metadata: Metadata, spec: Spec)
 case class Spec(entrypoint: String, templates: List[Template])

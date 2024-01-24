@@ -1,8 +1,8 @@
 package xyz.didx.castanet
 
-import scala.io.Source
-/*import scala.quoted._*/
 import cats.data.State
+
+import scala.io.Source
 
 sealed trait ProtoItem
 case class Service(packageName: String = "", name: String = "", rpcs: List[RPC] = List())

@@ -4,8 +4,10 @@ import cats._
 import cats.implicits._
 import monocle.Lens
 import monocle.syntax.all.*
-import scala.collection.immutable.{ListSet, SortedMap}
+
 import java.util.UUID
+import scala.collection.immutable.ListSet
+import scala.collection.immutable.SortedMap
 
 case class PetriNetBuilder(
     id: NodeId = UUID.randomUUID().toString,

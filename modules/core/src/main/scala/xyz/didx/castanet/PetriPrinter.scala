@@ -1,9 +1,10 @@
 package xyz.didx.castanet
 
-import java.io.PrintWriter
-import java.io.File
-import scala.collection.immutable.ListSet
 import scodec.bits.BitVector
+
+import java.io.File
+import java.io.PrintWriter
+import scala.collection.immutable.ListSet
 
 case class PetriPrinter(
     path: String = "./",
