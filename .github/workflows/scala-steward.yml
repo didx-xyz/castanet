@@ -1,4 +1,5 @@
 on:
+  workflow_dispatch:
   schedule:
     - cron: "0 0 * * *"
 
@@ -8,7 +9,7 @@ jobs:
   scala-steward:
     runs-on: ubuntu-latest
     env:
-      GITHUB_TOKEN: ${{ secrets.SCALA_STEWARD_GITHUB_TOKEN }}
+      GITHUB_TOKEN: ${{ github.token }}
     name: Launch Scala Steward
     steps:
       - name: Launch Scala Steward
