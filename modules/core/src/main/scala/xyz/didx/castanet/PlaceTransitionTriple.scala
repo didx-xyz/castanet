@@ -34,7 +34,8 @@ case class PlaceTransitionTriple(
   val graph: ListSet[PetriElement] = ListSet(start, end, transition) ++ consumers ++ producers
 
   def combine(base: PlaceTransitionTriple, other: PlaceTransitionTriple) =
-    if base.start.id == other.start.id && base.end.id == other.end.id && base.transition.id == other.transition.id then
+    if base.start.id == other.start.id && base.end.id == other.end.id && base.transition.id == other.transition.id
+    then
       base.copy(
         start,
         inWeights ++ other.inWeights,
