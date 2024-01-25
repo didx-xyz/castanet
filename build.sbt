@@ -44,16 +44,17 @@ ThisBuild / publishTo := Some {
   else
     "GitHub Package Registry Releases" at "https://maven.pkg.github.com/didx-xyz/castanet"
 }
-ThisBuild / publishMavenStyle := true
-ThisBuild / versionScheme     := Some("early-semver")
-ThisBuild / githubOwner       := "didx-xyz"
-ThisBuild / githubRepository  := "castanet"
-ThisBuild / githubTokenSource := TokenSource.Environment("GITHUB_TOKEN") || TokenSource.GitConfig(
+ThisBuild / versionScheme    := Some("early-semver")
+ThisBuild / githubOwner      := "didx-xyz"
+ThisBuild / githubRepository := "castanet"
+
+githubTokenSource := TokenSource.Environment("GITHUB_TOKEN") || TokenSource.GitConfig(
   "github.token"
 ) || TokenSource.Environment("SHELL") // default to allow sbt compile if token missing
-
-// Remove all additional repository other than Maven Central from POM
-ThisBuild / pomIncludeRepository := { _ => false }
+pomIncludeRepository := { _ =>
+  false
+} // Remove all additional repository other than Maven Central from POM
+publishMavenStyle := true
 
 lazy val root = project
   .in(file("."))
