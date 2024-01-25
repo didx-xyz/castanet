@@ -48,8 +48,8 @@ ThisBuild / publishMavenStyle := true
 ThisBuild / versionScheme     := Some("early-semver")
 ThisBuild / githubOwner       := "didx-xyz"
 ThisBuild / githubRepository  := "castanet"
-ThisBuild / githubTokenSource := TokenSource.GitConfig("github.token") || TokenSource.Environment(
-  "GITHUB_TOKEN"
+ThisBuild / githubTokenSource := TokenSource.Environment("GITHUB_TOKEN") || TokenSource.GitConfig(
+  "github.token"
 )
 
 // Remove all additional repository other than Maven Central from POM
