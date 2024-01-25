@@ -50,7 +50,7 @@ ThisBuild / githubOwner       := "didx-xyz"
 ThisBuild / githubRepository  := "castanet"
 ThisBuild / githubTokenSource := TokenSource.Environment("GITHUB_TOKEN") || TokenSource.GitConfig(
   "github.token"
-)
+) || TokenSource.Environment("SHELL") // default to allow sbt compile if token missing
 
 // Remove all additional repository other than Maven Central from POM
 ThisBuild / pomIncludeRepository := { _ => false }
