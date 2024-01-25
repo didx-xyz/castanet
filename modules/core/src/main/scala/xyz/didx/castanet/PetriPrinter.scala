@@ -45,8 +45,8 @@ case class PetriPrinter(
                 ",color=red,penwidth=3.0"
               else ""
             s"""${index.indexOf(kv._1)} -> ${index.indexOf(l.id)} [label="${petriNet.arcs(
-              ArcId(kv._1, l.id)
-            )}" $stp] \n"""
+                ArcId(kv._1, l.id)
+              )}" $stp] \n"""
           )
           .mkString
       )

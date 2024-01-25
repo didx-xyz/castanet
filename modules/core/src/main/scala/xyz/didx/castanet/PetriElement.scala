@@ -36,7 +36,7 @@ enum Arc extends PetriElement:
     .map("%02x".format(_))
     .mkString
   case Timed(from: NodeId, to: NodeId, weight: Weight, interval: Long) extends Arc
-  case Weighted(from: NodeId, to: NodeId, weight: Weight) extends Arc
+  case Weighted(from: NodeId, to: NodeId, weight: Weight)              extends Arc
 trait LinkableElement extends PetriElement:
   inline def assert[T](condition: Boolean, expr: T) =
     if condition then expr else ()
