@@ -16,33 +16,11 @@
 
 package xyz.didx.castanet
 
-import cats.*
-import cats.effect.*
-import cats.implicits.*
-import cats.instances.all.*
-import cats.syntax.all.*
-import io.circe.*
-import io.circe.generic.auto.*
-import io.circe.parser.*
-import io.circe.syntax.*
-import io.circe.yaml.*
-import monocle.Lens
-import monocle.syntax.all.*
-import scodec.bits.Bases
 import scodec.bits.BitVector
-import scodec.bits.ByteOrdering
-import xyz.didx.castanet.PetriElement
 
-import java.nio.file.Paths
-import scala.collection.immutable
-import scala.collection.immutable.ListSet
 import scala.collection.immutable.SortedMap
-import scala.collection.mutable
-import scala.concurrent.duration.*
 
 trait ColouredPetriNet:
-  // import LinkableElement._
-
   import cats.data.State
 
   val elements: SortedMap[NodeId, LinkableElement]

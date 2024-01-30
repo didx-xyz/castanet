@@ -1,25 +1,13 @@
 package xyz.didx.castanet
 
-import cats.*
-import cats.effect.*
-import cats.implicits.*
-import cats.instances.all.*
-import cats.syntax.all.*
+import cats.effect.IO
+import cats.effect.IOApp
 import fs2.Stream
-import fs2.io.file.*
+import fs2.io.file.Files
+import fs2.io.file.Path
 import fs2.text
-import fs2.text.*
 import io.circe.Json
-import io.circe.*
-import io.circe.generic.auto.*
-import io.circe.parser.*
-import io.circe.syntax.*
-import io.circe.yaml.*
-import monocle.Lens
-import monocle.syntax.all.*
-
-import java.time.Clock
-import scala.concurrent.duration.*
+import io.circe.yaml
 
 case class Workflow(apiVersion: String, kind: String, metadata: Metadata, spec: Spec)
 case class Spec(entrypoint: String, templates: List[Template])
@@ -57,7 +45,7 @@ object PetriGen extends IOApp.Simple:
       // .map(j => extractDag(j))
       // .through(stringArrayParser)
       // .through(decoder[IO,Workflow])
-      .map(w => w.toString)
+      .map(_.toString)
       .through(text.utf8.encode)
       .through(
         Files[IO].writeAll(Path("modules/protocol/src/main/workflow/workflow.txt"))

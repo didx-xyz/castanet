@@ -4,7 +4,6 @@ import scodec.bits.BitVector
 
 import java.io.File
 import java.io.PrintWriter
-import scala.collection.immutable.ListSet
 
 case class PetriPrinter(
     path: String = "./generated/",

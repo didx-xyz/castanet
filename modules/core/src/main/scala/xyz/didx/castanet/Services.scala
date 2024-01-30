@@ -2,8 +2,6 @@ package xyz.didx.castanet
 
 import cats.data.State
 
-import scala.io.Source
-
 sealed trait ProtoItem
 case class Service(packageName: String = "", name: String = "", rpcs: List[RPC] = List())
     extends ProtoItem

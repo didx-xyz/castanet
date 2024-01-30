@@ -5,7 +5,7 @@ import cats.Semigroup
 import java.security.MessageDigest
 import scala.collection.immutable.ListSet
 
-import Arc._
+import Arc.Weighted
 
 //trait ConcatenableProcess extends PetriElements
 case class PlaceTransitionTriple(

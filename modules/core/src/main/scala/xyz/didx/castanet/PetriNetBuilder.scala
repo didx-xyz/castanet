@@ -1,9 +1,8 @@
 package xyz.didx.castanet
 
-import cats._
+import cats.Monoid
+import cats.Semigroup
 import cats.implicits._
-import monocle.Lens
-import monocle.syntax.all.*
 
 import java.util.UUID
 import scala.collection.immutable.ListSet

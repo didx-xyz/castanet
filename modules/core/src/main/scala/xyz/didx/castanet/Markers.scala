@@ -2,12 +2,8 @@ package xyz.didx.castanet
 
 import scodec.bits.Bases
 import scodec.bits.BitVector
-import scodec.bits.ByteOrdering
 
-import scala.collection.immutable.ListSet
 import scala.collection.immutable.SortedMap
-import scala.collection.mutable
-import scala.concurrent.duration.*
 
 object Markers:
   def apply(cpn: ColouredPetriNet): Markers =

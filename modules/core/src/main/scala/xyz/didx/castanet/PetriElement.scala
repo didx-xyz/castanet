@@ -1,22 +1,13 @@
 package xyz.didx.castanet
 
 import cats.Monoid
-import cats.Semigroup
-import cats.effect.IO
-import cats.effect.*
-import cats.effect.std.Dispatcher
-import fs2.*
 
 import java.security.MessageDigest
-import java.util.concurrent.Executor
 import scala.collection.immutable.ListSet
 import scala.collection.immutable.SortedMap
-import scala.concurrent.ExecutionContext.Implicits.global
 
 trait PetriElement:
   def id: NodeId
-
-//trait ConcatenableProcess extends Monoid[PetriElement]
 
 type NodeId = String
 
