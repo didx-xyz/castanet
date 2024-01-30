@@ -7,7 +7,7 @@ import java.io.PrintWriter
 import scala.collection.immutable.ListSet
 
 case class PetriPrinter(
-    path: String = "./",
+    path: String = "./generated/",
     fileName: String = "petrinet",
     petriNet: ColouredPetriNet
 ):
