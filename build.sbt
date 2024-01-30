@@ -74,7 +74,6 @@ lazy val core = project
     name                      := "castanet",
     publishConfiguration      := publishConfiguration.value.withOverwrite(true),
     publishLocalConfiguration := publishLocalConfiguration.value.withOverwrite(true),
-    resolvers += "Local Maven Repository" at "file://" + Path.userHome.absolutePath + "/.m2/repository",
     libraryDependencies ++= Seq(
       "org.typelevel"  %% "cats-core"           % catsVersion,
       "co.fs2"         %% "fs2-core"            % fs2Version,
@@ -87,8 +86,7 @@ lazy val core = project
       "org.scalameta"  %% "munit"               % munitVersion   % Test,
       "org.scalameta"  %% "munit-scalacheck"    % munitVersion   % Test,
       "org.typelevel"  %% "munit-cats-effect-3" % munitCEVersion % Test
-    ),
-    libraryDependencies ++= Seq(
+    ) ++ Seq(
       "io.circe" %% "circe-core",
       "io.circe" %% "circe-generic",
       "io.circe" %% "circe-parser"
