@@ -35,41 +35,42 @@ trait ColouredPetriNet:
     */
   def step: State[Step, Markers] = State(step =>
     // all arcs that come from places with tokens
-    val flows: Map[ArcId, Long] = arcs.filter(a => step.inits.keySet.contains(a._1.from))
+    val flows: Map[ArcId, Long] = arcs.filter(arc => step.inits.keySet.contains(arc._1.from))
 
     // all arcs that have a smaller guards than the number of markers in the place - i.e. it can step
-    val steps: Map[ArcId, Long] = flows.filter(f => f._2 <= step.inits(f._1.from).populationCount)
+    val steps: Map[ArcId, Long] =
+      flows.filter(flow => flow._2 <= step.inits(flow._1.from).populationCount)
 
     // all arcs from allowable transitions (steps) and their weights
     val nextFlows: Map[ArcId, Long] = for
-      s <- steps
-      n <- graph(s._1.to)
-    yield (ArcId(s._1.to, n.id), arcs(ArcId(s._1.to, n.id)))
+      step    <- steps
+      element <- graph(step._1.to)
+    yield (ArcId(step._1.to, element.id), arcs(ArcId(step._1.to, element.id)))
 
     // all arcs that have a weight that is less than the capacity allowed by the destination place
-    val nextSteps = nextFlows.filter(f =>
-      f._2 <= elements(f._1.to)
+    val nextSteps = nextFlows.filter(flow =>
+      flow._2 <= elements(flow._1.to)
         .asInstanceOf[Place]
-        .capacity - step.markers.state(f._1.to).populationCount
+        .capacity - step.markers.state(flow._1.to).populationCount
     )
 
     // remove markers from the origin place of allowed steps
     val m1 = steps
-      .foldLeft(step.markers)((m, s) =>
-        m.setMarker(
-          Marker(s._1.from, step.markers.state(s._1.from).shiftLeft(s._2))
+      .foldLeft(step.markers)((markers, node) =>
+        markers.setMarker(
+          Marker(node._1.from, step.markers.state(node._1.from).shiftLeft(node._2))
         )
       )
 
     // add markers to the destination place (as per the weight from the transition)
     val m2 = nextFlows
-      .foldLeft(m1)((m, s) =>
-        m.setMarker(
+      .foldLeft(m1)((markers, node) =>
+        markers.setMarker(
           Marker(
-            s._1.to,
+            node._1.to,
             step.markers
-              .state(s._1.to)
-              .patch(step.markers.state(s._1.to).populationCount, BitVector.fill(s._2)(true))
+              .state(node._1.to)
+              .patch(step.markers.state(node._1.to).populationCount, BitVector.fill(node._2)(true))
           )
         )
       )
@@ -92,32 +93,33 @@ trait ColouredPetriNet:
     */
 
   def peek(step: Step): (Set[LinkableElement], Set[LinkableElement]) =
-    val flows: Map[ArcId, Long] = arcs.filter(a => step.inits.keySet.contains(a._1.from))
-    val steps: Map[ArcId, Long] = flows.filter(f => f._2 <= step.inits(f._1.from).populationCount)
+    val flows: Map[ArcId, Long] = arcs.filter(arc => step.inits.keySet.contains(arc._1.from))
+    val steps: Map[ArcId, Long] =
+      flows.filter(flow => flow._2 <= step.inits(flow._1.from).populationCount)
     val nextFlows: Map[ArcId, Long] = for
-      s <- steps
-      n <- graph(s._1.to)
-    yield (ArcId(s._1.to, n.id), arcs(ArcId(s._1.to, n.id)))
+      step    <- steps
+      element <- graph(step._1.to)
+    yield (ArcId(step._1.to, element.id), arcs(ArcId(step._1.to, element.id)))
 
     // all arcs that have a weight that is less than the capacity allowed by the destination place
     val currentPlaces = nextFlows
-      .filter(f =>
-        f._2 <= elements(f._1.to)
+      .filter(flow =>
+        flow._2 <= elements(flow._1.to)
           .asInstanceOf[Place]
-          .capacity - step.markers.state(f._1.to).populationCount
+          .capacity - step.markers.state(flow._1.to).populationCount
       )
-      .map(f => elements.get(f._1.from) /* match
+      .map(flow => elements.get(flow._1.from) /* match
         case Some(p: Place) => p.name
         case _ => "" */
       )
       .flatten
     val nextTransitions = nextFlows
-      .filter(f =>
-        f._2 <= elements(f._1.to)
+      .filter(flow =>
+        flow._2 <= elements(flow._1.to)
           .asInstanceOf[Place]
-          .capacity - step.markers.state(f._1.to).populationCount
+          .capacity - step.markers.state(flow._1.to).populationCount
       )
-      .map(f => elements.get(f._1.to) /*  match
+      .map(flow => elements.get(flow._1.to) /*  match
         case Some(t: Transition) => t.name
         case _ => "" */
       )
