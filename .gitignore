@@ -26,3 +26,4 @@ build/
 meta.json
 project/metals.sbt
 project/project/*
+*.png
