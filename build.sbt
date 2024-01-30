@@ -62,9 +62,7 @@ lazy val root = project
   .aggregate(core)
   .settings(
     scalafixSettings,
-    publish / skip            := true,
-    publishConfiguration      := publishConfiguration.value.withOverwrite(true),
-    publishLocalConfiguration := publishLocalConfiguration.value.withOverwrite(true)
+    publish / skip := true
   )
 
 lazy val core = project
