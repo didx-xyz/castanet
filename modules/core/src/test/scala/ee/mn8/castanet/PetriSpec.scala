@@ -59,7 +59,7 @@ class PetriSpec extends FunSuite {
     val places = pn.elements.values.collect { case p: Place =>
       p
     }
-    val dimensions = (places.size, places.maxBy(p => p.capacity).capacity)
+    val dimensions = (places.size, places.maxBy(_.capacity).capacity)
     println(dimensions)
 
     val m1 = Markers(pn)

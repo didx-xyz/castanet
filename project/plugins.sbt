@@ -1,6 +1,4 @@
-resolvers += Resolver.mavenLocal
-
-//addSbtPlugin("ch.epfl.lamp" % "sbt-dotty" % "0.5.5")
+addSbtPlugin("ch.epfl.scala" % "sbt-bloop" % "1.5.13")
 
 addSbtPlugin("org.scalameta" % "sbt-scalafmt" % "2.5.2")
 

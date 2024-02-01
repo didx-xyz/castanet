@@ -9,6 +9,7 @@ val munitCEVersion       = "1.0.7"
 val munitCheckEffVersion = "1.0.0-M7"
 val googleProtoVersion   = "3.19.1"
 val circeVersion         = "0.14.6"
+val circeYamlVersion     = "0.14.2"
 val monocleVersion       = "3.2.0"
 val scodecVersion        = "1.1.38"
 val junitVersion         = "0.11"
@@ -50,7 +51,7 @@ ThisBuild / githubRepository := "castanet"
 
 githubTokenSource := TokenSource.Environment("GITHUB_TOKEN") || TokenSource.GitConfig(
   "github.token"
-) || TokenSource.Environment("SHELL") // default to allow sbt compile if token missing
+)
 pomIncludeRepository := { _ =>
   false
 } // Remove all additional repository other than Maven Central from POM
@@ -61,9 +62,7 @@ lazy val root = project
   .aggregate(core)
   .settings(
     scalafixSettings,
-    publish / skip            := true,
-    publishConfiguration      := publishConfiguration.value.withOverwrite(true),
-    publishLocalConfiguration := publishLocalConfiguration.value.withOverwrite(true)
+    publish / skip := true
   )
 
 lazy val core = project
@@ -73,8 +72,6 @@ lazy val core = project
     name                      := "castanet",
     publishConfiguration      := publishConfiguration.value.withOverwrite(true),
     publishLocalConfiguration := publishLocalConfiguration.value.withOverwrite(true),
-    resolvers += "Local Maven Repository" at "file://" + Path.userHome.absolutePath + "/.m2/repository",
-    // resolvers += Resolver.githubPackages("OWNER"),
     libraryDependencies ++= Seq(
       "org.typelevel"  %% "cats-core"           % catsVersion,
       "co.fs2"         %% "fs2-core"            % fs2Version,
@@ -83,13 +80,11 @@ lazy val core = project
       "dev.optics"     %% "monocle-core"        % monocleVersion,
       "org.scodec"     %% "scodec-bits"         % scodecVersion,
       "org.scala-lang" %% "scala3-staging"      % Scala3,
-      "io.circe"       %% "circe-yaml"          % "0.14.2",
+      "io.circe"       %% "circe-yaml"          % circeYamlVersion,
       "org.scalameta"  %% "munit"               % munitVersion   % Test,
       "org.scalameta"  %% "munit-scalacheck"    % munitVersion   % Test,
       "org.typelevel"  %% "munit-cats-effect-3" % munitCEVersion % Test
-    ),
-    libraryDependencies ++= Seq(
-      // "io.circe" %% "circe-yaml",
+    ) ++ Seq(
       "io.circe" %% "circe-core",
       "io.circe" %% "circe-generic",
       "io.circe" %% "circe-parser"

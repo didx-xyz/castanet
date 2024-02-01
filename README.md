@@ -6,6 +6,14 @@
 libraryDependencies += "xyz.didx" %% "castanet" % "0.1.9"
 ```
 
+### Dependencies
+
+Printing graphs with the PetriPrinter class requires graphviz:
+
+```sh
+sudo apt-get update && sudo apt-get install -y graphviz
+```
+
 ## Getting Started
 
 Formally, a Petri Net is a state transition graph that maps Places (circles) to Transitions (rectangles) and Transitions to Places via Arcs (arrows).
@@ -89,14 +97,14 @@ The resulting state changes can be visualized with a PetriPrinter.
     steps.run(Step(m3, true, 1)).value
 ```
 
-A business engineer can create a workflow by joining Places (States) and Transitions with Arcs 
+A business engineer can create a workflow by joining Places (States) and Transitions with Arcs
 
 ![alt text](docs/place_transitions.png "Arcs")
 
 ## References
 
 <a id="1">[1]</a>
-Sassone, V.. (2006). On the category of Petri net computation. 10.1007/3-540-59293-8_205. 
+Sassone, V.. (2006). On the category of Petri net computation. 10.1007/3-540-59293-8_205.
 
 <a id="2">[2]</a>
-Ermel, Claudia & Martini, Alfio. (1996). A Taste of Categorical Petri Nets. 
+Ermel, Claudia & Martini, Alfio. (1996). A Taste of Categorical Petri Nets.
