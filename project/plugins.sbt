@@ -1,4 +1,4 @@
-addSbtPlugin("ch.epfl.scala" % "sbt-bloop" % "1.5.13")
+addSbtPlugin("ch.epfl.scala" % "sbt-bloop" % "1.5.14")
 
 addSbtPlugin("org.scalameta" % "sbt-scalafmt" % "2.5.2")
 
