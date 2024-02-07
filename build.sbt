@@ -4,7 +4,7 @@ lazy val Scala213 = "2.13.8"
 Global / scalaVersion         := Scala3
 Global / onChangedBuildSource := ReloadOnSourceChanges
 
-ThisBuild / version := "0.1.10"
+ThisBuild / version := "0.1.11"
 
 ThisBuild / organization         := "xyz.didx"
 ThisBuild / organizationName     := "DIDx"
