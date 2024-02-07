@@ -1,23 +1,10 @@
-val Scala3   = "3.3.1"
-val Scala213 = "2.13.8"
+lazy val Scala3   = "3.3.1"
+lazy val Scala213 = "2.13.8"
 
-val catsVersion          = "2.10.0"
-val ceVersion            = "3.5.3"
-val fs2Version           = "3.9.4"
-val munitVersion         = "1.0.0-M11"
-val munitCEVersion       = "1.0.7"
-val munitCheckEffVersion = "1.0.0-M7"
-val googleProtoVersion   = "3.19.1"
-val circeVersion         = "0.14.6"
-val circeYamlVersion     = "0.14.2"
-val monocleVersion       = "3.2.0"
-val scodecVersion        = "1.1.38"
-val junitVersion         = "0.11"
-val refinedVersion       = "0.9.27"
-
+Global / scalaVersion         := Scala3
 Global / onChangedBuildSource := ReloadOnSourceChanges
-ThisBuild / scalaVersion      := Scala3
-ThisBuild / version           := "0.1.10"
+
+ThisBuild / version := "0.1.10"
 
 ThisBuild / organization         := "xyz.didx"
 ThisBuild / organizationName     := "DIDx"
@@ -65,6 +52,16 @@ lazy val root = project
     publish / skip := true
   )
 
+lazy val catsVersion      = "2.10.0"
+lazy val ceVersion        = "3.5.3"
+lazy val fs2Version       = "3.9.4"
+lazy val munitVersion     = "1.0.0-M11"
+lazy val munitCEVersion   = "2.0.0-M4"
+lazy val circeVersion     = "0.14.6"
+lazy val circeYamlVersion = "0.14.2"
+lazy val monocleVersion   = "3.2.0"
+lazy val scodecVersion    = "1.1.38"
+
 lazy val core = project
   .in(file("modules/core"))
   .settings(
@@ -73,17 +70,16 @@ lazy val core = project
     publishConfiguration      := publishConfiguration.value.withOverwrite(true),
     publishLocalConfiguration := publishLocalConfiguration.value.withOverwrite(true),
     libraryDependencies ++= Seq(
-      "org.typelevel"  %% "cats-core"           % catsVersion,
-      "co.fs2"         %% "fs2-core"            % fs2Version,
-      "co.fs2"         %% "fs2-io"              % fs2Version,
-      "org.typelevel"  %% "cats-effect"         % ceVersion,
-      "dev.optics"     %% "monocle-core"        % monocleVersion,
-      "org.scodec"     %% "scodec-bits"         % scodecVersion,
-      "org.scala-lang" %% "scala3-staging"      % Scala3,
-      "io.circe"       %% "circe-yaml"          % circeYamlVersion,
-      "org.scalameta"  %% "munit"               % munitVersion   % Test,
-      "org.scalameta"  %% "munit-scalacheck"    % munitVersion   % Test,
-      "org.typelevel"  %% "munit-cats-effect-3" % munitCEVersion % Test
+      "org.typelevel" %% "cats-core"         % catsVersion,
+      "co.fs2"        %% "fs2-core"          % fs2Version,
+      "co.fs2"        %% "fs2-io"            % fs2Version,
+      "org.typelevel" %% "cats-effect"       % ceVersion,
+      "dev.optics"    %% "monocle-core"      % monocleVersion,
+      "org.scodec"    %% "scodec-bits"       % scodecVersion,
+      "io.circe"      %% "circe-yaml"        % circeYamlVersion,
+      "org.scalameta" %% "munit"             % munitVersion   % Test,
+      "org.scalameta" %% "munit-scalacheck"  % munitVersion   % Test,
+      "org.typelevel" %% "munit-cats-effect" % munitCEVersion % Test
     ) ++ Seq(
       "io.circe" %% "circe-core",
       "io.circe" %% "circe-generic",
