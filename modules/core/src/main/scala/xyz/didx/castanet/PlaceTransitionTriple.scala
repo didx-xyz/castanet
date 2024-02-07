@@ -16,7 +16,7 @@ case class PlaceTransitionTriple(
     end: Place
 ) extends Semigroup[PlaceTransitionTriple]:
   val consumers: ListSet[Arc] = inWeights.map(c => Weighted(start.id, transition.id, c))
-  val producers               = outWeights.map(p => Weighted(transition.id, end.id, p))
+  val producers: ListSet[Arc] = outWeights.map(p => Weighted(transition.id, end.id, p))
 
   val id: NodeId = MessageDigest
     .getInstance("SHA-256")
