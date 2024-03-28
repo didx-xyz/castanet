@@ -1,4 +1,4 @@
-lazy val Scala3   = "3.3.3"
+lazy val Scala3   = "3.4.1"
 lazy val Scala213 = "2.13.8"
 
 Global / scalaVersion         := Scala3
