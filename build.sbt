@@ -60,7 +60,7 @@ lazy val munitCEVersion   = "2.0.0-RC1"
 lazy val circeVersion     = "0.14.7"
 lazy val circeYamlVersion = "0.14.2"
 lazy val monocleVersion   = "3.2.0"
-lazy val scodecVersion    = "1.1.38"
+lazy val scodecVersion    = "1.2.0"
 
 lazy val core = project
   .in(file("modules/core"))
