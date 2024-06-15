@@ -30,7 +30,7 @@ case class Container(image: String, command: List[String])
 object PetriGen extends IOApp.Simple:
   def fromYaml(s: String) =
     for json <- yaml.parser.parse(s)
-      // x <- json.asObject
+    // x <- json.asObject
     yield json
 
   val converter: Stream[IO, Unit] =
