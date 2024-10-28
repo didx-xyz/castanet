@@ -53,7 +53,7 @@ lazy val root = project
   )
 
 lazy val catsVersion      = "2.12.0"
-lazy val ceVersion        = "3.5.4"
+lazy val ceVersion        = "3.5.5"
 lazy val fs2Version       = "3.10.2"
 lazy val munitVersion     = "1.0.0"
 lazy val munitCEVersion   = "2.0.0"
