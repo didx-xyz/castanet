@@ -58,7 +58,7 @@ lazy val fs2Version       = "3.11.0"
 lazy val munitVersion     = "1.0.0"
 lazy val munitCEVersion   = "2.0.0"
 lazy val circeVersion     = "0.14.8"
-lazy val circeYamlVersion = "0.14.2"
+lazy val circeYamlVersion = "0.16.0"
 lazy val monocleVersion   = "3.2.0"
 lazy val scodecVersion    = "1.2.0"
 
