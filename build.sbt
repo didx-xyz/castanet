@@ -52,7 +52,7 @@ lazy val root = project
     publish / skip := true
   )
 
-lazy val catsVersion      = "2.12.0"
+lazy val catsVersion      = "2.13.0"
 lazy val ceVersion        = "3.5.5"
 lazy val fs2Version       = "3.11.0"
 lazy val munitVersion     = "1.0.0"
