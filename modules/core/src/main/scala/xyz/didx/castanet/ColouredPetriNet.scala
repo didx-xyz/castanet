@@ -110,8 +110,7 @@ trait ColouredPetriNet:
       )
       .map(flow => elements.get(flow._1.from) /* match
         case Some(p: Place) => p.name
-        case _ => "" */
-      )
+        case _ => "" */ )
       .flatten
     val nextTransitions = nextFlows
       .filter(flow =>
@@ -121,8 +120,7 @@ trait ColouredPetriNet:
       )
       .map(flow => elements.get(flow._1.to) /*  match
         case Some(t: Transition) => t.name
-        case _ => "" */
-      )
+        case _ => "" */ )
       .flatten
     (currentPlaces.toSet, nextTransitions.toSet)
 
