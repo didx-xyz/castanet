@@ -30,8 +30,7 @@ case class PetriPrinter(
 
               case None => "°" * p.capacity
             s"""${index.indexOf(p.id)} [label="${p.name}\\n${markerString}\\n" shape=circle]\n"""
-          case t: Transition => s"""${index.indexOf(t.id)} [label="${t.name}" shape=box]\n"""
-        )
+          case t: Transition => s"""${index.indexOf(t.id)} [label="${t.name}" shape=box]\n""")
       )
 
     // the arcs
